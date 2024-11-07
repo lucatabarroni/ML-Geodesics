@@ -1,0 +1,7 @@
+To include new geometries
+
+1) Add tag and initial parameters to the input file
+2) Define the geometry and its properties in geometry.py
+3) Import the geometry and initialize it in the geometry in main.py
+4) Define the loss function in the Losses.py file
+5) Import the loss in the service_ML.py file and set it in 'set_model' function

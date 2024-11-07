@@ -1,0 +1,76 @@
+# Add exact results
+
+
+destination_path:   'results/'
+extra_tag:          ''
+keras_seed:         1
+mode:               'training'      #  'prediction'   'restart'
+geometry_type:      'planar'        #  'planar'       'non_planar'   'separable'  'nonlinear_oscillator'   'chaotic_oscillator'
+
+
+geometry:
+
+  # The following are needed for planar and non-planar case, both with Hamilton equations and separable motion
+  b:         1.89  # this is bxy for the non planar case
+  bz:        1     # bz = 0 means theta = pi/2
+  af:        0.1
+  E:         1.0
+  L1:        1.0
+  L5:        1.0
+  rho_0:     10.0
+  # Prho_0:    
+  # phi_0:     
+  theta_0:  0
+  Ptheta_0: 0.1
+
+  # The following are needed for the non-linear harmonic_oscillator
+  q_0:    1.3
+  p_0:    1.0
+
+  # The following are needed for the cahotic harmonic_oscillator
+  x_0:   0.3
+  y_0:  -0.3
+  px_0:  0.3
+  py_0:  0.15
+
+training:
+
+  architecture:
+    type:         'FC'
+    layers:        3
+    neurons:       64
+    activation:   'tanh'                         # 'tanh' 'sigmoid' 'linear' 'sin' 'softplus'
+
+  epochs:                  160000
+  lambda:                  0.9
+  initializer:            'random_normal'        #'random_normal'   'HeNormal'   'GlorotNormal'   'GlorotUniform'
+  lri:                     8e-4
+  lr_scheduler_type:       1                     # 0 = constant
+  preconditioner_type:     0                     # 0 = no preconditioning, 1 = ...
+
+  time_range1:
+    type:     'linear' # log
+    t_start:   0
+    t_final:   14.0    # s=[0,15.2], t =[0,36.54]
+    Npoints:   200
+
+  # time_range2:
+  #   type:     'log'
+  #   t_start:   13.1
+  #   t_finish:  15.0
+  #   Npoints:   200    
+
+
+# 14.0  0.6549413163430393     -0.8996896216692336   5.845578210654502
+# 14.1  0.6257741316706017     -1.0671986919566743   5.993269721299904
+# 14.2  0.5931999271204048     -1.284756869961569    6.146545058862599
+# 14.3  0.5567952851081747     -1.5741840505627314   6.306431542082238
+# 14.4  0.5161138396452611     -1.9715595944938114   6.474302912932517
+# 14.5  0.4705929772087905     -2.538238829060188    6.652003600847497
+# 14.6  0.4197633223614136     -3.3875335170425065   6.842237696950065
+# 14.7  0.3632303471930939     -4.743921681012337    7.049231937613486
+# 14.8  0.30076984493327863    -7.101071120266154    7.280460646668598
+# 14.9  0.2324970274035441    -11.688207136114416    7.551117689220892
+# 15.0  0.1590076548255472    -22.011535640035166    7.897627573897243
+# 15.1  0.081501216648551     -47.75524920804313     8.419005003457167
+# 15.2  0.001780052420361191  -80.10107054136269     9.283355329211611
